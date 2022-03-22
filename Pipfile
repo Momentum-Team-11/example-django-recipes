@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-environ = "*"
+django-extensions = "*"
+django-registration-redux = "*"
+django-ordered-model = "*"
+django-toggle-m2m = "*"
+django-debug-toolbar = "*"
+psycopg2-binary = "*"
+
+[dev-packages]
+black = "*"
+flake8 = "*"
+
+[requires]
+python_version = "3.10"
+
+[pipenv]
+allow_prereleases = true
