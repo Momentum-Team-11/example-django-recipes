@@ -21,7 +21,7 @@ class Tag(models.Model):
         return self.tag
 
 
-# https://docs.djangoproject.com/en/3.2/topics/db/managers/#adding-extra-manager-methods
+# https://docs.djangoproject.com/en/4.0/topics/db/managers/#adding-extra-manager-methods
 class RecipeManager(models.Manager):
     def for_user(self, user):
         if user.is_authenticated:

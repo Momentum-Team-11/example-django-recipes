@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import environ
+import django_on_heroku
 
 env = environ.Env(
     # set casting, default value
@@ -174,3 +175,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 REGISTRATION_FORM = "core.forms.CustomRegistrationForm"
 LOGIN_REDIRECT_URL = "/"
+
+# These are settings for heroku
+django_on_heroku.settings(locals())
+del DATABASES["default"]["OPTIONS"]["sslmode"]
