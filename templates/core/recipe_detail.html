@@ -53,7 +53,7 @@
   {% endfor %}
 </ul>
 
-{% if user == recipe.user %}
+{% if user == recipe.author %}
   {% if recipe.ingredients.count > 0 %}
   <p><a id="show-ingredient-form" href="{% url 'add_ingredient' recipe_pk=recipe.pk %}">Add another ingredient</a></p>
   {% endif %}
@@ -73,7 +73,7 @@
   {% endfor %}
 </ol>
 
-{% if user == recipe.user %}
+{% if user == recipe.author %}
   {% if recipe.steps.count > 0 %}
   <p><a id="show-step-form" href="{% url 'add_recipe_step' recipe_pk=recipe.pk %}">Add another step</a></p>
   {% endif %}
