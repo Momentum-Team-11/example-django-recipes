@@ -149,6 +149,8 @@ AUTH_USER_MODEL = "core.User"
 
 # https://docs.djangoproject.com/en/4.0/topics/logging/
 # These specific settings allow us to see the SQL queries being performed with each request
+from django.utils.log import DEFAULT_LOGGING
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -157,18 +159,27 @@ LOGGING = {
             "()": "django.utils.log.RequireDebugTrue",
         }
     },
+    "formatters": {
+        "django.server": DEFAULT_LOGGING["formatters"]["django.server"],
+    },
     "handlers": {
         "console": {
             "level": "DEBUG",
             "filters": ["require_debug_true"],
             "class": "logging.StreamHandler",
-        }
+        },
+        "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
     },
     "loggers": {
         "django.db.backends": {
             "level": "DEBUG",
             "handlers": ["console"],
-        }
+        },
+        # "django.template": {
+        #     "handlers": ["console"],
+        #     "level": "DEBUG",
+        # },
+        "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
     },
 }
 
@@ -179,5 +190,5 @@ REGISTRATION_FORM = "core.forms.CustomRegistrationForm"
 LOGIN_REDIRECT_URL = "/"
 
 # These are settings for heroku
-django_on_heroku.settings(locals())
-del DATABASES["default"]["OPTIONS"]["sslmode"]
+if not DEBUG:
+    django_on_heroku.settings(locals(), db_ssl_required=False)
