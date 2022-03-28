@@ -29,7 +29,7 @@
 <div class="w-50 flex flex-column">
   <h2>👈 Drag a Recipe to Add</h2>
   <div id="recipes" class="flex-auto" data-add-remove-url={% url 'add_remove_recipe' %}>
-  {% for recipe in recipes.all %}
+  {% for recipe in recipes_to_add.all %}
     <div class="pa2 ba bw1 mb2" style="cursor: move" data-pk="{{ recipe.pk }}">{{ recipe.title }}</div>
   {% endfor %}
   </div>

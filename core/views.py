@@ -86,8 +86,9 @@ def show_meal_plan(request, year=None, month=None, day=None):
 
     # https://docs.djangoproject.com/en/4.0/ref/models/querysets/#get-or-create
     meal_plan, _ = request.user.meal_plans.get_or_create(date=date_for_plan)
+
     # meal_plan, _ = MealPlan.objects.get_or_create(user=request.user, date=date_for_plan)
-    recipes = Recipe.objects.for_user(request.user).exclude(
+    recipes_not_in_mealplan = Recipe.objects.for_user(request.user).exclude(
         pk__in=[r.pk for r in meal_plan.recipes.all()]
     )
 
@@ -96,7 +97,7 @@ def show_meal_plan(request, year=None, month=None, day=None):
         "core/show_mealplan.html",
         {
             "plan": meal_plan,
-            "recipes": recipes,
+            "recipes_to_add": recipes_not_in_mealplan,
             "date": date_for_plan,
             "next_day": next_day,
             "prev_day": prev_day,
