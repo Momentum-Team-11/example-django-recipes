@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "ordered_model",
     "core",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -188,3 +189,11 @@ LOGIN_REDIRECT_URL = "/"
 # These are settings for heroku
 if not DEBUG:
     django_on_heroku.settings(locals(), db_ssl_required=False)
+
+
+# For DRF
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly"
+    ]
+}

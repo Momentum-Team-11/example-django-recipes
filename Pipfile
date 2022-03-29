@@ -15,6 +15,9 @@ psycopg2-binary = "*"
 django-on-heroku = "*"
 gunicorn = "*"
 whitenoise = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
 
 [dev-packages]
 black = "*"
